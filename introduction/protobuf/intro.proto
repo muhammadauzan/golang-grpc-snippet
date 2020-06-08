@@ -1,6 +1,6 @@
 syntax = "proto3";
 
 package intro;
-option go_package="introduction/protobuf";
+option go_package="introduction/protobuf;intropb";
 
 service IntroService{}
