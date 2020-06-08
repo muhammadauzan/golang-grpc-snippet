@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package intro;
+option go_package="introduction/protobuf";
+
+service IntroService{}
