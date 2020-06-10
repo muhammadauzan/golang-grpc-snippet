@@ -10,9 +10,12 @@ import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -26,25 +29,208 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type Introduce struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirstName string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName  string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+}
+
+func (x *Introduce) Reset() {
+	*x = Introduce{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_introduction_protobuf_intro_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Introduce) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Introduce) ProtoMessage() {}
+
+func (x *Introduce) ProtoReflect() protoreflect.Message {
+	mi := &file_introduction_protobuf_intro_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Introduce.ProtoReflect.Descriptor instead.
+func (*Introduce) Descriptor() ([]byte, []int) {
+	return file_introduction_protobuf_intro_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Introduce) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *Introduce) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+type IntroRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Introduce *Introduce `protobuf:"bytes,1,opt,name=introduce,proto3" json:"introduce,omitempty"`
+}
+
+func (x *IntroRequest) Reset() {
+	*x = IntroRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_introduction_protobuf_intro_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IntroRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IntroRequest) ProtoMessage() {}
+
+func (x *IntroRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_introduction_protobuf_intro_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IntroRequest.ProtoReflect.Descriptor instead.
+func (*IntroRequest) Descriptor() ([]byte, []int) {
+	return file_introduction_protobuf_intro_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *IntroRequest) GetIntroduce() *Introduce {
+	if x != nil {
+		return x.Introduce
+	}
+	return nil
+}
+
+type IntroResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *IntroResponse) Reset() {
+	*x = IntroResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_introduction_protobuf_intro_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IntroResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IntroResponse) ProtoMessage() {}
+
+func (x *IntroResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_introduction_protobuf_intro_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IntroResponse.ProtoReflect.Descriptor instead.
+func (*IntroResponse) Descriptor() ([]byte, []int) {
+	return file_introduction_protobuf_intro_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *IntroResponse) GetResult() string {
+	if x != nil {
+		return x.Result
+	}
+	return ""
+}
+
 var File_introduction_protobuf_intro_proto protoreflect.FileDescriptor
 
 var file_introduction_protobuf_intro_proto_rawDesc = []byte{
 	0x0a, 0x21, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x12, 0x05, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x32, 0x0e, 0x0a, 0x0c, 0x49, 0x6e,
-	0x74, 0x72, 0x6f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x42, 0x1f, 0x5a, 0x1d, 0x69, 0x6e,
-	0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x3b, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x12, 0x05, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x22, 0x47, 0x0a, 0x09, 0x49, 0x6e,
+	0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x69, 0x72, 0x73, 0x74,
+	0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x66, 0x69, 0x72,
+	0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x61, 0x73, 0x74, 0x4e,
+	0x61, 0x6d, 0x65, 0x22, 0x3e, 0x0a, 0x0c, 0x49, 0x6e, 0x74, 0x72, 0x6f, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x09, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x2e, 0x49,
+	0x6e, 0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x65, 0x52, 0x09, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x64,
+	0x75, 0x63, 0x65, 0x22, 0x27, 0x0a, 0x0d, 0x49, 0x6e, 0x74, 0x72, 0x6f, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0x44, 0x0a, 0x0c,
+	0x49, 0x6e, 0x74, 0x72, 0x6f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x34, 0x0a, 0x05,
+	0x49, 0x6e, 0x74, 0x72, 0x6f, 0x12, 0x13, 0x2e, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x2e, 0x49, 0x6e,
+	0x74, 0x72, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x69, 0x6e, 0x74,
+	0x72, 0x6f, 0x2e, 0x49, 0x6e, 0x74, 0x72, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x42, 0x1f, 0x5a, 0x1d, 0x69, 0x6e, 0x74, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x3b, 0x69, 0x6e, 0x74, 0x72,
+	0x6f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
-var file_introduction_protobuf_intro_proto_goTypes = []interface{}{}
+var (
+	file_introduction_protobuf_intro_proto_rawDescOnce sync.Once
+	file_introduction_protobuf_intro_proto_rawDescData = file_introduction_protobuf_intro_proto_rawDesc
+)
+
+func file_introduction_protobuf_intro_proto_rawDescGZIP() []byte {
+	file_introduction_protobuf_intro_proto_rawDescOnce.Do(func() {
+		file_introduction_protobuf_intro_proto_rawDescData = protoimpl.X.CompressGZIP(file_introduction_protobuf_intro_proto_rawDescData)
+	})
+	return file_introduction_protobuf_intro_proto_rawDescData
+}
+
+var file_introduction_protobuf_intro_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_introduction_protobuf_intro_proto_goTypes = []interface{}{
+	(*Introduce)(nil),     // 0: intro.Introduce
+	(*IntroRequest)(nil),  // 1: intro.IntroRequest
+	(*IntroResponse)(nil), // 2: intro.IntroResponse
+}
 var file_introduction_protobuf_intro_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: intro.IntroRequest.introduce:type_name -> intro.Introduce
+	1, // 1: intro.IntroService.Intro:input_type -> intro.IntroRequest
+	2, // 2: intro.IntroService.Intro:output_type -> intro.IntroResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_introduction_protobuf_intro_proto_init() }
@@ -52,18 +238,57 @@ func file_introduction_protobuf_intro_proto_init() {
 	if File_introduction_protobuf_intro_proto != nil {
 		return
 	}
+	if !protoimpl.UnsafeEnabled {
+		file_introduction_protobuf_intro_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Introduce); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_introduction_protobuf_intro_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IntroRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_introduction_protobuf_intro_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IntroResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_introduction_protobuf_intro_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_introduction_protobuf_intro_proto_goTypes,
 		DependencyIndexes: file_introduction_protobuf_intro_proto_depIdxs,
+		MessageInfos:      file_introduction_protobuf_intro_proto_msgTypes,
 	}.Build()
 	File_introduction_protobuf_intro_proto = out.File
 	file_introduction_protobuf_intro_proto_rawDesc = nil
@@ -83,6 +308,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type IntroServiceClient interface {
+	// Unary
+	Intro(ctx context.Context, in *IntroRequest, opts ...grpc.CallOption) (*IntroResponse, error)
 }
 
 type introServiceClient struct {
@@ -93,22 +320,60 @@ func NewIntroServiceClient(cc grpc.ClientConnInterface) IntroServiceClient {
 	return &introServiceClient{cc}
 }
 
+func (c *introServiceClient) Intro(ctx context.Context, in *IntroRequest, opts ...grpc.CallOption) (*IntroResponse, error) {
+	out := new(IntroResponse)
+	err := c.cc.Invoke(ctx, "/intro.IntroService/Intro", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IntroServiceServer is the server API for IntroService service.
 type IntroServiceServer interface {
+	// Unary
+	Intro(context.Context, *IntroRequest) (*IntroResponse, error)
 }
 
 // UnimplementedIntroServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedIntroServiceServer struct {
 }
 
+func (*UnimplementedIntroServiceServer) Intro(context.Context, *IntroRequest) (*IntroResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Intro not implemented")
+}
+
 func RegisterIntroServiceServer(s *grpc.Server, srv IntroServiceServer) {
 	s.RegisterService(&_IntroService_serviceDesc, srv)
+}
+
+func _IntroService_Intro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IntroRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IntroServiceServer).Intro(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intro.IntroService/Intro",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IntroServiceServer).Intro(ctx, req.(*IntroRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _IntroService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "intro.IntroService",
 	HandlerType: (*IntroServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "introduction/protobuf/intro.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Intro",
+			Handler:    _IntroService_Intro_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "introduction/protobuf/intro.proto",
 }
