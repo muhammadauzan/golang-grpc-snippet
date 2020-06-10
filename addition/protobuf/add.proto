@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package add;
+option go_package = "addition/protobuf;addpb";
+
+message Addition {
+    int32 first = 1;
+    int32 second =2;
+}
+
+message AddRequest {
+    Addition addition = 1;
+}
+
+message AddResponse {
+    int32 result = 1;
+}
+
+service AddService{
+    rpc Add (AddRequest) returns (AddResponse);
+}
