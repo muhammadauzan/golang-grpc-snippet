@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package filterpb;
+option go_package="./drill_exercise_1/filter/protobuf;filterpb";
+
+message Number {
+    int32 num = 1;
+}
+
+message FilterRequest {
+    Number data = 1;
+}
+
+message FilterResponse {
+    bool result = 1;
+}
+
+service FilterService {
+    rpc FilterMethod (FilterRequest) returns (FilterResponse);
+}

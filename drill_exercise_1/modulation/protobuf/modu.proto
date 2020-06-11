@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package modupb;
+option go_package="drill_exercise_1/modulation/protobuf;modupb";
+
+message Variable {
+    int32 first = 1;
+    int32 second = 2;
+}
+
+message ModRequest {
+    Variable constant = 1;
+}
+
+message ModResponse {
+    int32 result = 1;
+}
+
+service ModService {
+    rpc Modulation (ModRequest) returns (ModResponse);
+}
