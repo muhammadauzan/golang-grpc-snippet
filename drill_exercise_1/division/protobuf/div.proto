@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package div;
+option go_package = "drill_exercise_1/division/protobuf;divpb";
+
+message Number {
+    int32 first = 1;
+    int32 second = 2;
+}
+
+message DivRequest {
+    Number number = 1;
+}
+
+message DivResponse {
+    int32 result = 1;
+}
+
+service Div {
+    rpc Division (DivRequest) returns (DivResponse);
+}
