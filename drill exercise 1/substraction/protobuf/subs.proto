@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package substract;
+option go_package="exercise/substraction/protobuf;substractpb";
+
+message Substraction{
+    int32 first = 1;
+    int32 second = 2;
+}
+
+message SubstractRequest {
+    Substraction substraction = 1;
+}
+
+message SubstractResponse {
+    int32 result = 1;
+}
+
+service SubstractService {
+    rpc Substract (SubstractRequest) returns (SubstractResponse);
+}

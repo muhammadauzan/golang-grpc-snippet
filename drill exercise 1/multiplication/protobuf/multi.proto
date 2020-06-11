@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package multi;
+option go_package="exercise/multiplication/protobuf;multipb";
+
+message Number {
+    int32 first = 1;
+    int32 second = 2;
+}
+
+message MultiRequest {
+    Number num = 1;
+}
+
+message MultiResponse {
+    int32 result = 1;
+}
+
+service MultiService {
+    rpc Multiplication (MultiRequest) returns (MultiResponse);
+}
