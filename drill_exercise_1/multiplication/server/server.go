@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	multipb "github.com/golang-grpc-snippet/exercise/multiplication/protobuf"
+	multipb "github.com/golang-grpc-snippet/drill_exercise_1/multiplication/protobuf"
 	"google.golang.org/grpc"
 )
 

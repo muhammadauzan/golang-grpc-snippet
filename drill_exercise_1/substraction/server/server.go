@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	substractpb "github.com/golang-grpc-snippet/exercise/substraction/protobuf"
+	substractpb "github.com/golang-grpc-snippet/drill_exercise_1/substraction/protobuf"
 	"google.golang.org/grpc"
 )
 
